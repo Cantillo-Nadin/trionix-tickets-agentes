@@ -1,0 +1,183 @@
+:root {
+  --fondo: #edf0f2;
+  --superficie: #ffffff;
+  --tinta: #16232f;
+  --tinta-suave: #4a5967;
+  --linea: #cbd3da;
+  --cabecera: #12303a;
+  --acento: #0a6c74;
+  --acento-oscuro: #07535a;
+  --alta: #b42318;
+  --media: #9a5b00;
+  --baja: #2f6f4f;
+  --error-fondo: #fdecea;
+  --ok-fondo: #e6f3ec;
+  --radio: 4px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--fondo);
+  color: var(--tinta);
+  font-family: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+h1, h2, h3, p { margin: 0; }
+h2 { font-size: 1.25rem; }
+h3 { font-size: 1rem; }
+
+:focus-visible { outline: 3px solid var(--acento); outline-offset: 2px; }
+
+/* ---------- Cabecera ---------- */
+.cabecera {
+  background: var(--cabecera);
+  color: #fff;
+  padding: 1.25rem clamp(1rem, 4vw, 3rem);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.5rem 1.5rem;
+}
+.cabecera h1 { font-size: 1.75rem; letter-spacing: -0.01em; }
+.resumen { color: #b9d3d8; }
+
+/* ---------- Aviso ---------- */
+.aviso {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.75rem clamp(1rem, 4vw, 3rem);
+  border-bottom: 2px solid var(--alta);
+  background: var(--error-fondo);
+}
+.aviso.ok { border-bottom-color: var(--baja); background: var(--ok-fondo); }
+.aviso[hidden] { display: none; }
+
+/* ---------- Layout ---------- */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 21rem;
+  gap: 2rem;
+  padding: 1.5rem clamp(1rem, 4vw, 3rem) 3rem;
+  max-width: 78rem;
+  margin: 0 auto;
+}
+@media (max-width: 62rem) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+}
+
+.lateral { display: grid; gap: 2rem; align-content: start; }
+.lateral section {
+  background: var(--superficie);
+  border: 1px solid var(--linea);
+  border-radius: var(--radio);
+  padding: 1rem;
+  display: grid;
+  gap: 0.75rem;
+}
+
+/* ---------- Barra de filtros ---------- */
+.barra {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem 1.25rem;
+  margin-bottom: 0.75rem;
+}
+.barra h2 { margin-right: auto; }
+.barra label { display: grid; gap: 0.15rem; font-size: 0.9rem; color: var(--tinta-suave); }
+
+/* ---------- Formularios ---------- */
+.formulario { display: grid; gap: 0.75rem; }
+.formulario label, .comentario-form label { display: grid; gap: 0.2rem; font-size: 0.9rem; color: var(--tinta-suave); }
+.formulario + .formulario, .agentes + .formulario { border-top: 1px solid var(--linea); padding-top: 0.75rem; }
+
+input, select, textarea {
+  font: inherit;
+  color: var(--tinta);
+  background: #fff;
+  border: 1px solid #8a99a6;
+  border-radius: var(--radio);
+  padding: 0.45rem 0.6rem;
+  min-width: 0;
+  width: 100%;
+}
+textarea { resize: vertical; min-height: 4.5rem; }
+
+/* ---------- Botones ---------- */
+.btn, .btn-texto {
+  font: inherit;
+  cursor: pointer;
+  border-radius: var(--radio);
+}
+.btn {
+  background: #fff;
+  color: var(--tinta);
+  border: 1px solid #8a99a6;
+  padding: 0.4rem 0.8rem;
+}
+.btn:hover { background: #f1f4f6; }
+.btn-primario { background: var(--acento); border-color: var(--acento); color: #fff; font-weight: 700; }
+.btn-primario:hover { background: var(--acento-oscuro); }
+.btn-peligro { color: var(--alta); border-color: var(--alta); }
+.btn-peligro.confirmar { background: var(--alta); color: #fff; font-weight: 700; }
+.btn:disabled { opacity: 0.55; cursor: progress; }
+.btn-texto { background: none; border: none; color: var(--acento-oscuro); text-decoration: underline; padding: 0.2rem 0.4rem; }
+
+/* ---------- Tickets ---------- */
+#lista-tickets { background: var(--superficie); border: 1px solid var(--linea); border-radius: var(--radio); }
+
+.ticket {
+  padding: 1rem 1.1rem 1rem 1rem;
+  border-left: 6px solid var(--linea);
+  border-bottom: 1px solid var(--linea);
+  display: grid;
+  gap: 0.5rem;
+}
+.ticket:last-child { border-bottom: none; }
+.ticket.p-alta { border-left-color: var(--alta); }
+.ticket.p-media { border-left-color: var(--media); }
+.ticket.p-baja { border-left-color: var(--baja); }
+.ticket.resuelto { background: #f6f8f9; }
+.ticket.resuelto .ticket-asunto { color: var(--tinta-suave); text-decoration: line-through; text-decoration-thickness: 1px; }
+
+.ticket-cabecera { display: flex; flex-wrap: wrap; gap: 0.4rem 0.75rem; align-items: baseline; justify-content: space-between; }
+.ticket-asunto { font-size: 1.05rem; font-weight: 700; }
+.etiquetas { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.etiqueta { font-size: 0.85rem; padding: 0 0.5rem; border: 1px solid currentColor; border-radius: 999px; background: #fff; }
+.etiqueta.alta { color: var(--alta); }
+.etiqueta.media { color: var(--media); }
+.etiqueta.baja { color: var(--baja); }
+.etiqueta.abierto { color: var(--acento-oscuro); }
+.etiqueta.resuelto { color: var(--tinta-suave); }
+
+.meta { color: var(--tinta-suave); font-size: 0.92rem; }
+.agente-asignado { font-size: 0.95rem; }
+.agente-asignado.vacio { color: var(--tinta-suave); font-style: italic; }
+
+.acciones { display: flex; flex-wrap: wrap; gap: 0.5rem; align-items: center; }
+.asignar { display: flex; gap: 0.4rem; align-items: center; }
+.asignar select { width: auto; max-width: 15rem; }
+
+/* ---------- Comentarios ---------- */
+.comentarios { border-top: 1px dashed var(--linea); padding-top: 0.6rem; display: grid; gap: 0.6rem; }
+.comentarios ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.5rem; }
+.comentarios li { font-size: 0.95rem; }
+.comentarios .meta { display: block; font-size: 0.85rem; }
+.comentario-form { display: grid; gap: 0.5rem; max-width: 34rem; }
+
+/* ---------- Agentes ---------- */
+.agentes { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.6rem; }
+.agentes li { display: grid; gap: 0.25rem; padding-bottom: 0.6rem; border-bottom: 1px solid var(--linea); }
+.agentes li:last-child { border-bottom: none; padding-bottom: 0; }
+.agente-nombre { font-weight: 700; }
+.agente-acciones { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.agente-acciones .btn { padding: 0.2rem 0.6rem; font-size: 0.9rem; }
+.inactivo { color: var(--tinta-suave); }
+
+.vacio-estado { padding: 1.5rem 1rem; color: var(--tinta-suave); }

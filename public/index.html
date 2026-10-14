@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Trionix Tickets</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="cabecera">
+    <h1>Trionix Tickets</h1>
+    <p id="resumen" class="resumen">Cargando tickets…</p>
+  </header>
+
+  <div id="aviso" class="aviso" hidden>
+    <span id="aviso-texto"></span>
+    <button type="button" id="aviso-cerrar" class="btn-texto" aria-label="Cerrar aviso">Cerrar</button>
+  </div>
+
+  <main class="layout">
+    <section class="principal" aria-labelledby="titulo-tickets">
+      <div class="barra">
+        <h2 id="titulo-tickets">Tickets</h2>
+        <label>Estado
+          <select id="filtro-estado">
+            <option value="">Todos</option>
+            <option value="abierto">Abiertos</option>
+            <option value="resuelto">Resueltos</option>
+          </select>
+        </label>
+        <label>Prioridad
+          <select id="filtro-prioridad">
+            <option value="">Todas</option>
+            <option value="alta">Alta</option>
+            <option value="media">Media</option>
+            <option value="baja">Baja</option>
+          </select>
+        </label>
+      </div>
+      <div id="lista-tickets"></div>
+    </section>
+
+    <aside class="lateral">
+      <section aria-labelledby="titulo-nuevo">
+        <h2 id="titulo-nuevo">Nuevo ticket</h2>
+        <form id="form-ticket" class="formulario">
+          <label>Cliente
+            <input name="cliente" required minlength="2" maxlength="100" autocomplete="off">
+          </label>
+          <label>Asunto
+            <input name="asunto" required minlength="5" maxlength="200" autocomplete="off">
+          </label>
+          <label>Prioridad
+            <select name="prioridad" required>
+              <option value="baja">Baja</option>
+              <option value="media" selected>Media</option>
+              <option value="alta">Alta</option>
+            </select>
+          </label>
+          <button type="submit" class="btn btn-primario">Crear ticket</button>
+        </form>
+      </section>
+
+      <section aria-labelledby="titulo-agentes">
+        <h2 id="titulo-agentes">Agentes</h2>
+        <ul id="lista-agentes" class="agentes"></ul>
+        <form id="form-agente" class="formulario">
+          <h3>Registrar agente</h3>
+          <label>Nombre
+            <input name="nombre" required minlength="3" maxlength="100" autocomplete="off">
+          </label>
+          <label>Correo
+            <input name="email" type="email" required autocomplete="off">
+          </label>
+          <label>Especialidad
+            <select name="especialidad" required>
+              <option value="general">General</option>
+              <option value="redes">Redes</option>
+              <option value="software">Software</option>
+              <option value="hardware">Hardware</option>
+            </select>
+          </label>
+          <button type="submit" class="btn">Registrar agente</button>
+        </form>
+      </section>
+    </aside>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
